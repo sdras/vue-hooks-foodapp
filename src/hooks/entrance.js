@@ -1,5 +1,5 @@
 import { Sine, TweenMax } from "gsap";
-import { useComputed, useData, useMounted, useWatch } from "vue-hooks";
+import { useComputed, useData, useMounted, useUpdated, useWatch } from "vue-hooks";
 
 export function foo() {
   const data = useData([
@@ -27,6 +27,15 @@ export function foo() {
       console.log(`new count is: ${val}, old count is ${prevVal}`);
     }
   );
+
+  useUpdated(() => {
+    console.log('updated!')
+
+    TweenMax.to('.contain', 1, {
+      opacity: 0,
+      ease: Sine.easeOut
+    })
+  })
 
   useMounted(() => {
     console.log("mounted!");
