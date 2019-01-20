@@ -127,7 +127,7 @@ export default {
 }
 
 h4 {
-  margin-top: 0;
+  margin: 8px 0 30px;
 }
 
 h1 {
