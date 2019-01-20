@@ -47,7 +47,7 @@ main {
 h1,
 h2,
 h3 {
-  //font-family: "Prata", serif;
+  font-family: "Prata", serif;
   color: white;
   font-weight: normal;
 }
@@ -67,6 +67,7 @@ h1 {
     background: black;
     text-transform: uppercase;
     letter-spacing: 0.15em;
+    color: #f1bf9d;
   }
 }
 </style>

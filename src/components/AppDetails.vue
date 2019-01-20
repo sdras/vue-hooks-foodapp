@@ -2,11 +2,11 @@
   <div class="scene -detail">
     <div class="detail">
       <div class="content">
-        <h2 class="title">{{ currentItem.restaurant }}</h2>
+        <h2 class="title" ref="title">{{ currentItem.restaurant }}</h2>
         <div class="tags">
           <span v-for="tag in currentItem.tags" :key="tag">{{ tag }}</span>
         </div>
-        <p class="description">{{ currentItem.desc }}</p>
+        <p class="description" ref="desc">{{ currentItem.desc }}</p>
       </div>
     </div>
   </div>
@@ -15,6 +15,10 @@
 <script>
 import { preventscroll } from "./../hooks/preventscroll.js";
 import { enablescroll } from "./../hooks/enablescroll.js";
+import { TimelineMax, TweenMax, Sine, Elastic } from "gsap";
+import Splitting from "splitting";
+import "splitting/dist/splitting.css";
+import "splitting/dist/splitting-cells.css";
 
 export default {
   props: {
@@ -27,22 +31,52 @@ export default {
     preventscroll();
     enablescroll();
   },
+  methods: {
+    fadeIn() {
+      TweenMax.fromTo(
+        ".-detail",
+        0.3,
+        {
+          opacity: 0
+        },
+        {
+          opacity: 1
+        }
+      );
+    },
+    lettering() {
+      const title = this.$refs.title;
+
+      const results = Splitting({ target: title, by: "chars" });
+      const tl = new TimelineMax();
+
+      tl.staggerFromTo(
+        ".char",
+        4,
+        {
+          opacity: 0,
+          transformOrigin: "50% 50% -30px",
+          rotationY: 180
+        },
+        {
+          opacity: 1,
+          transformOrigin: "50% 50% 0",
+          rotationY: 0,
+          ease: Elastic.easeOut
+        },
+        0.02,
+        "+=0.3"
+      );
+    }
+  },
   mounted() {
-    TweenMax.fromTo(
-      ".-detail",
-      0.3,
-      {
-        opacity: 0
-      },
-      {
-        opacity: 1
-      }
-    );
+    this.fadeIn();
+    this.lettering();
   }
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .scene.-detail {
   position: absolute;
   top: 500px;
@@ -69,6 +103,16 @@ export default {
       font-size: 2rem;
       margin-top: 0;
       text-transform: uppercase;
+      span {
+        perspective: 500;
+        perspective-origin: 50% 50%;
+        transform-style: preserve-3d;
+      }
+    }
+
+    .word,
+    .char {
+      margin-bottom: 0;
     }
 
     .creator {
