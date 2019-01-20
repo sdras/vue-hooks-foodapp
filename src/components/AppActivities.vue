@@ -35,6 +35,10 @@ h4 {
   color: white;
 }
 
+aside {
+  padding: 35px 12vmin 0 6vmin;
+}
+
 img {
   float: right;
   width: 50px;

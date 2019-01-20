@@ -29,7 +29,7 @@ nav {
 .title {
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  margin: 28px 20px;
+  margin: 31px 20px;
   font-size: 18px;
 }
 

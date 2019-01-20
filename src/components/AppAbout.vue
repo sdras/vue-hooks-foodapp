@@ -22,4 +22,8 @@ img {
   opacity: 0.9;
   border: 1px solid $app-border;
 }
+
+aside {
+  padding: 35px 8vmin 0 10vmin;
+}
 </style>

@@ -132,7 +132,7 @@ export default new Vuex.Store({
         title: "City Zoo",
         date: "August 3",
         profile: "profile1.jpg",
-        post: "If you do too much it's going to lose its effectiveness. Isn't that fantastic? You can just push a little tree out of your brush like that. Maybe there's a happy little waterfall happening over here. This present moment is perfect simply due to the fact you're experiencing it. It's a very cold picture, I may have to go get my coat. It’s about to freeze me to death."
+        post: "If you do too much it's going to lose its effectiveness. You can just push a little tree out of your brush like that. Maybe there's a happy little waterfall happening over here. This present moment is perfect simply due to the fact you're experiencing it."
       },
       {
         title: "Painting Classes",

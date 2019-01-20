@@ -65,10 +65,6 @@ h2 {
   font-size: 30px;
 }
 
-aside {
-  padding: 35px 60px;
-}
-
 .tags {
   padding-bottom: 10px;
   span {
