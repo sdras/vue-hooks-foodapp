@@ -19,6 +19,7 @@
 <script>
 import AppDetails from "./AppDetails.vue";
 import { TimelineMax, Sine } from "gsap";
+import { enablescroll } from "./../hooks/enablescroll.js";
 
 export default {
   components: {
@@ -33,6 +34,9 @@ export default {
         last: null
       }
     };
+  },
+  hooks() {
+    //return enablescroll();
   },
   computed: {
     food() {

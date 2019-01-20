@@ -4,7 +4,7 @@
       <div class="content">
         <h2 class="title">{{ currentItem.restaurant }}</h2>
         <div class="tags">
-          <span v-for="tag in currentItem.tags" :key="currentItem.tag">{{ tag }}</span>
+          <span v-for="tag in currentItem.tags" :key="tag">{{ tag }}</span>
         </div>
         <p class="description">{{ currentItem.desc }}</p>
       </div>
@@ -13,12 +13,31 @@
 </template>
 
 <script>
+import { preventscroll } from "./../hooks/preventscroll.js";
+import { enablescroll } from "./../hooks/enablescroll.js";
+
 export default {
   props: {
     currentItem: {
       type: Object,
       required: true
     }
+  },
+  hooks() {
+    preventscroll();
+    enablescroll();
+  },
+  mounted() {
+    TweenMax.fromTo(
+      ".-detail",
+      0.3,
+      {
+        opacity: 0
+      },
+      {
+        opacity: 1
+      }
+    );
   }
 };
 </script>
