@@ -1,5 +1,5 @@
 <template>
-  <div class="scene -detail">
+  <div class="scene -detail" :style="{ top: (topImg + 500) + 'px' }">
     <div class="detail">
       <div class="content">
         <h2 class="title" ref="title">{{ currentItem.restaurant }}</h2>
@@ -24,6 +24,10 @@ export default {
   props: {
     currentItem: {
       type: Object,
+      required: true
+    },
+    topImg: {
+      type: Number,
       required: true
     }
   },
@@ -55,17 +59,17 @@ export default {
       tl.add("start");
       tl.staggerFromTo(
         ".char",
-        3,
+        3.5,
         {
           opacity: 0,
           transformOrigin: "50% 50% -30px",
-          rotationY: 180
+          rotationY: 100
         },
         {
           opacity: 1,
           transformOrigin: "50% 50% 0",
           rotationY: 0,
-          ease: Elastic.easeOut.config(1, 0.5)
+          ease: Elastic.easeOut.config(1, 0.4)
         },
         0.02,
         "start+=0.3"
@@ -81,7 +85,7 @@ export default {
           ease: Sine.easeOut
         },
         0.008,
-        "start+=0.4"
+        "start+=0.6"
       );
     }
   },
@@ -95,7 +99,6 @@ export default {
 <style lang="scss">
 .scene.-detail {
   position: absolute;
-  top: 500px;
 }
 
 .detail {

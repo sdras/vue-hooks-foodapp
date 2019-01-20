@@ -12,14 +12,13 @@
       <img :src="`${item.name}.jpg`" :alt="item.name" :ref="item.name">
       <h4>{{ item.restaurant }}</h4>
     </div>
-    <app-details v-if="isShowing" :currentItem="currentItem"></app-details>
+    <app-details v-if="isShowing" :currentItem="currentItem" :topImg="topImg"></app-details>
   </div>
 </template>
 
 <script>
 import AppDetails from "./AppDetails.vue";
 import { TimelineMax, Sine } from "gsap";
-import { enablescroll } from "./../hooks/enablescroll.js";
 
 export default {
   components: {
@@ -32,11 +31,9 @@ export default {
       rects: {
         first: null,
         last: null
-      }
+      },
+      topImg: 0
     };
-  },
-  hooks() {
-    //return enablescroll();
   },
   computed: {
     food() {
@@ -54,6 +51,8 @@ export default {
       if (!this.isShowing) {
         this.isShowing = true;
         this.currentItem = item;
+        console.log(this.rects.last);
+        this.topImg = this.$refs.gallery.scrollTop;
 
         let deltaW = this.rects.first.left - this.rects.last.left;
         let deltaH = this.rects.first.top - this.rects.last.top;
