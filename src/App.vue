@@ -2,6 +2,7 @@
   <div>
     <app-navigation></app-navigation>
     <main>
+      <app-activities></app-activities>
       <app-grid></app-grid>
     </main>
   </div>
@@ -9,11 +10,13 @@
 
 <script>
 import AppGrid from "./components/AppGrid.vue";
+import AppActivities from "./components/AppActivities.vue";
 import AppNavigation from "./components/AppNavigation.vue";
 
 export default {
   components: {
     AppNavigation,
+    AppActivities,
     AppGrid
   }
 };
@@ -31,11 +34,9 @@ body {
 }
 
 main {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   width: 100vw;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
 }
 
 #app {
@@ -67,7 +68,7 @@ h1 {
     background: black;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    color: #f1bf9d;
+    color: $app-highlight;
   }
 }
 </style>

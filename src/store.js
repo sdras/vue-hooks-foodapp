@@ -78,6 +78,32 @@ export default new Vuex.Store({
       {
         name: "tomato", restaurant: "French Street Kitchen", desc: "Filet mignon bacon spare ribs meatball jowl pork belly cow ground round ham strip steak. Prosciutto flank fatback pastrami short loin turducken tenderloin tongue frankfurter venison drumstick beef ribs burgdoggen chicken brisket. Sirloin chuck filet mignon sausage, pork belly chicken brisket alcatra turducken buffalo ham ball tip ground round boudin.", tags: ["dinner", "chinese", "soup"]
       },
+    ],
+    activities: [
+      {
+        title: "City Zoo",
+        date: "August 3",
+        profile: "profile1.jpg",
+        post: "If you do too much it's going to lose its effectiveness. Isn't that fantastic? You can just push a little tree out of your brush like that. Maybe there's a happy little waterfall happening over here. This present moment is perfect simply due to the fact you're experiencing it. It's a very cold picture, I may have to go get my coat. It’s about to freeze me to death."
+      },
+      {
+        title: "Painting Classes",
+        date: "September 25",
+        profile: "profile2.jpg",
+        post: "That's why I paint - because I can create the kind of world I want - and I can make this world as happy as I want it. You can't have light without dark. You can't know happiness unless you've known sorrow. This is the way you take out your flustrations. There are no mistakes. You can fix anything that happens."
+      },
+      {
+        title: "Playground",
+        date: "April 15",
+        profile: "profile3.jpg",
+        post: "Clouds are free. They just float around the sky all day and have fun. Let's put some happy trees and bushes back in here. It's life. It's interesting. It's fun. Trees grow in all kinds of ways. They're not all perfectly straight. Not every limb is perfect. I want everbody to be happy. That's what it's all about. Let's do that again."
+      },
+      {
+        title: "Steamboat Casino",
+        date: "April 30",
+        profile: "profile4.jpg",
+        post: "This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. There he comes. When things happen - enjoy them. They're little gifts. Talk to trees, look at the birds. Whatever it takes. We wash our brush with odorless thinner."
+      },
     ]
   },
   mutations: {
