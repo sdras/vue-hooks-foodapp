@@ -12,11 +12,24 @@
 </template>
 
 <script>
-import { foo } from "./../hooks/initchart.js";
-
 export default {
-  hooks() {
-    return foo();
+  data() {
+    return (
+      {
+        name: "Panda Express",
+        url: "potstickers.jpg",
+        desc:
+          "Bacon ipsum dolor amet ball tip pancetta andouille pork loin chuck ham swine tongue pastrami cow ham hock drumstick bacon. Short ribs fatback tenderloin, andouille pastrami ball tip buffalo bresaola jerky t-bone spare ribs cupim.",
+        tags: ["chinese", "dumplings", "meat"]
+      },
+      {
+        name: "Blithe Cafe",
+        url: "eggs.jpg",
+        desc:
+          "Kielbasa strip steak buffalo kevin drumstick bacon. Shank spare ribs venison cupim. Beef ground round t-bone flank cow porchetta, ball tip filet mignon meatball drumstick sirloin pancetta fatback. Tenderloin drumstick pork chop picanha ball tip.",
+        tags: ["eggs", "cafes", "takeout", "brunch"]
+      }
+    );
   }
 };
 </script>

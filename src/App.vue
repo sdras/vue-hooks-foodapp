@@ -1,21 +1,27 @@
 <template>
   <div id="app">
-    <base-chart></base-chart>
+    <app-grid></app-grid>
   </div>
 </template>
 
 <script>
-import BaseChart from "./components/BaseChart.vue";
+import AppGrid from "./components/AppGrid.vue";
 
 export default {
   components: {
-    BaseChart
+    AppGrid
   }
 };
 </script>
 
 <style lang="scss">
+$app-width: 50vmin;
+$app-height: 90vmin;
+
 #app {
+  height: $app-height;
+  width: $app-width;
+  overflow: hidden;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
