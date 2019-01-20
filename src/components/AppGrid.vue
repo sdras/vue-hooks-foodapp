@@ -1,7 +1,8 @@
 <template>
-  <div class="scene -gallery" ref="gallery">
+  <div class="scene -gallery" ref="gallery" id="app">
+    <h1>Restaurants In Your Area</h1>
     <div
-      @click="expand(item.name, $event)"
+      @click="expand(item, $event)"
       v-for="item in food"
       class="item"
       :key="item.name"
@@ -11,7 +12,7 @@
       <img :src="`${item.name}.jpg`" :alt="item.name" :ref="item.name">
       <h4>{{ item.restaurant }}</h4>
     </div>
-    <app-details v-if="isShowing"></app-details>
+    <app-details v-if="isShowing" :currentItem="currentItem"></app-details>
   </div>
 </template>
 
@@ -26,6 +27,7 @@ export default {
   data() {
     return {
       isShowing: false,
+      currentItem: null,
       rects: {
         first: null,
         last: null
@@ -40,13 +42,14 @@ export default {
   methods: {
     expand(item, event) {
       const itemEl = event.target;
-      const elImg = this.$refs[item][0];
+      const elImg = this.$refs[item.name][0];
 
       this.rects.first = itemEl.getBoundingClientRect();
       this.rects.last = this.$refs.gallery.getBoundingClientRect();
 
       if (!this.isShowing) {
         this.isShowing = true;
+        this.currentItem = item;
 
         let deltaW = this.rects.first.left - this.rects.last.left;
         let deltaH = this.rects.first.top - this.rects.last.top;
@@ -66,11 +69,12 @@ export default {
           y: 0,
           scale: 1,
           transformOrigin: "0 0",
-          zIndex: 1,
+          zIndex: 0,
           ease: Sine.easeIn
         });
 
         this.isShowing = false;
+        this.currentItem = null;
       }
     }
   }
@@ -89,6 +93,7 @@ export default {
   overflow-y: scroll;
 
   &.-gallery {
+    position: relative;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -100,7 +105,6 @@ export default {
       flex-shrink: 0;
       height: auto;
       min-height: $app-width / 3;
-      // overflow: hidden;
     }
   }
 }
@@ -121,5 +125,10 @@ export default {
 
 h4 {
   margin-top: 0;
+}
+
+h1 {
+  text-align: center;
+  width: 100%;
 }
 </style>

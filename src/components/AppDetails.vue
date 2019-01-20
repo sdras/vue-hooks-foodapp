@@ -1,23 +1,34 @@
 <template>
   <div class="scene -detail">
     <div class="detail">
-      <img>
       <div class="content">
-        <div class="title">Great Horned Owl</div>
-        <div class="creator">Krystine Lopez</div>
-        <div
-          class="description"
-        >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure cum, est amet delectus, blanditiis voluptatem laborum pariatur consequatur quae voluptate, nisi. Laborum adipisci iste earum distinctio, fugit, quas ipsa impedit.</div>
+        <h2 class="title">{{ currentItem.restaurant }}</h2>
+        <div class="tags">
+          <span v-for="tag in currentItem.tags" :key="currentItem.tag">{{ tag }}</span>
+        </div>
+        <p class="description">{{ currentItem.desc }}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    currentItem: {
+      type: Object,
+      required: true
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
+.scene.-detail {
+  position: absolute;
+  top: 500px;
+}
+
 .detail {
   color: white;
   width: $app-width;
@@ -26,44 +37,27 @@ export default {};
   display: flex;
   flex-direction: column;
 
-  > img {
-    height: auto;
-    width: 100%;
-    height: auto;
-    flex: 0 1 auto;
-    z-index: 1;
-  }
-
-  > .content {
-    background: #232323;
+  .content {
+    background: #1d1f20;
     flex: 1 0 auto;
     padding: 2rem 1.5rem;
-    animation: slide-down 0.6s ease-in-out;
 
-    @keyframes slide-down {
-      from {
-        transform: translateY(-100%);
-      }
-      to {
-        transform: translateY(0);
-      }
-    }
-
-    > * {
+    * {
       margin-bottom: 1rem;
     }
 
-    > .title {
+    .title {
       font-size: 2rem;
+      margin-top: 0;
       text-transform: uppercase;
     }
 
-    > .creator {
+    .creator {
       opacity: 0.6;
       margin-top: -0.5rem;
     }
 
-    > .description {
+    .description {
       line-height: 1.5;
     }
   }
