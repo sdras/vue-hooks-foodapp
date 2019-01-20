@@ -9,7 +9,7 @@
       ref="itemimg"
     >
       <img :src="`${item.name}.jpg`" :alt="item.name" :ref="item.name">
-      <h3>{{ item.name }}</h3>
+      <h4>{{ item.restaurant }}</h4>
     </div>
     <app-details v-if="isShowing"></app-details>
   </div>
@@ -117,5 +117,9 @@ export default {
     position: relative;
     backface-visibility: hidden;
   }
+}
+
+h4 {
+  margin-top: 0;
 }
 </style>
