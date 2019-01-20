@@ -4,12 +4,14 @@
     <main>
       <app-activities></app-activities>
       <app-grid></app-grid>
+      <app-about></app-about>
     </main>
   </div>
 </template>
 
 <script>
 import AppGrid from "./components/AppGrid.vue";
+import AppAbout from "./components/AppAbout.vue";
 import AppActivities from "./components/AppActivities.vue";
 import AppNavigation from "./components/AppNavigation.vue";
 
@@ -17,6 +19,7 @@ export default {
   components: {
     AppNavigation,
     AppActivities,
+    AppAbout,
     AppGrid
   }
 };
@@ -55,6 +58,15 @@ h3 {
 
 h1 {
   font-size: 40px;
+}
+
+h2 {
+  margin: 0;
+  font-size: 30px;
+}
+
+aside {
+  padding: 35px 60px;
 }
 
 .tags {

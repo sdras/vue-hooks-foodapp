@@ -21,18 +21,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-aside {
-  padding: 35px 60px;
-}
-
 div {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid $app-border;
   padding: 30px 0 20px;
-}
-
-h2 {
-  margin: 0;
-  font-size: 30px;
 }
 
 h4 {
