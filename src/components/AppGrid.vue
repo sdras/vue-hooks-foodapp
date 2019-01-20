@@ -1,28 +1,30 @@
 <template>
-  <div class="scene -gallery">
-    <div v-for="item in food" class="item" :data-key="item">
-      <img :src="`${item}.jpg`" :alt="item">
+  <div class="scene -gallery" ref="gallery">
+    <div
+      @click="expand(item, $event)"
+      v-for="item in food"
+      class="item"
+      :key="item"
+      :data-key="item"
+      ref="itemimg"
+    >
+      <img :src="`${item}.jpg`" :alt="item" :ref="item">
     </div>
-
-    <div class="scene -detail">
-      <div class="detail">
-        <img>
-        <div class="content">
-          <div class="title">Great Horned Owl</div>
-          <div class="creator">Krystine Lopez</div>
-          <div
-            class="description"
-          >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure cum, est amet delectus, blanditiis voluptatem laborum pariatur consequatur quae voluptate, nisi. Laborum adipisci iste earum distinctio, fugit, quas ipsa impedit.</div>
-        </div>
-      </div>
-    </div>
+    <app-details v-if="isShowing"></app-details>
   </div>
 </template>
 
 <script>
+import AppDetails from "./AppDetails.vue";
+import { TimelineMax, Power2 } from "gsap";
+
 export default {
+  components: {
+    AppDetails
+  },
   data() {
     return {
+      isShowing: false,
       food: [
         "appetizer",
         "avocado",
@@ -49,57 +51,58 @@ export default {
         "steamed",
         "toast",
         "tomato"
-      ]
+      ],
+      rects: {
+        first: null,
+        last: null
+      }
     };
   },
   methods: {
+    expand(item, event) {
+      const itemEl = event.target;
+
+      this.rects.first = itemEl.getBoundingClientRect();
+      this.rects.last = this.$refs.gallery.getBoundingClientRect();
+
+      let elImg = this.$refs[item][0];
+
+      if (!this.isShowing) {
+        console.log("in");
+        const itemEl = event.target;
+        this.isShowing = true;
+
+        let deltaW = this.rects.first.left - this.rects.last.left;
+        let deltaH = this.rects.first.top - this.rects.last.top;
+        let deltaS = this.rects.last.width / this.rects.first.width;
+
+        TweenMax.to(elImg, 0.5, {
+          x: -deltaW,
+          y: -deltaH,
+          scale: deltaS,
+          transformOrigin: "0 0",
+          zIndex: 1000,
+          ease: Power2.easeOut
+        });
+      } else {
+        TweenMax.to(elImg, 0.5, {
+          x: this.rects.first.left,
+          y: this.rects.first.top,
+          scale: 1,
+          transformOrigin: "0 0",
+          zIndex: 1,
+          ease: Power2.easeIn
+        });
+
+        this.isShowing = false;
+      }
+    },
     fullThing() {
       const items = document.querySelectorAll(".item");
       const detailItem = document.querySelector(".detail");
       const detailScene = document.querySelector(".scene.-detail");
 
       detailScene.style.display = "none";
-
-      items.forEach(item => {
-        item.addEventListener("click", () => {
-          const itemImage = item.querySelector("img");
-
-          detailItem.setAttribute("data-image", item.getAttribute("data-key"));
-
-          detailItem
-            .querySelector("img")
-            .setAttribute("src", itemImage.getAttribute("src"));
-
-          detailScene.style.display = "block";
-          item.style.opacity = 0;
-
-          let firstRect = itemImage.getBoundingClientRect();
-          let lastRect = detailItem.getBoundingClientRect();
-
-          detailItem.animate(
-            [
-              {
-                transform: `
-                  translateX(${firstRect.left - lastRect.left}px)
-                  translateY(${firstRect.top - lastRect.top}px)
-                  scale(${firstRect.width / lastRect.width})
-                `
-              },
-              {
-                transform: `
-                  translateX(0)
-                  translateY(0)
-                  scale(1)
-                `
-              }
-            ],
-            {
-              duration: 600,
-              easing: "cubic-bezier(0.2, 0, 0.2, 1)"
-            }
-          );
-        });
-      });
 
       detailItem.addEventListener("click", () => {
         const itemImage = document.querySelector(
@@ -140,14 +143,14 @@ export default {
     }
   },
   mounted() {
-    this.fullThing();
+    //this.fullThing();
   }
 };
 </script>
 
-<style lang="scss" scoped>
-$app-width: 50vmin;
-$app-height: 90vmin;
+<style lang="scss">
+$app-width: 700px;
+$app-height: 100vh;
 
 .scene {
   display: flex;
@@ -178,86 +181,14 @@ $app-height: 90vmin;
 
 .item {
   transform-origin: top left;
-
-  > img {
-    height: auto;
-    width: 100%;
-  }
-}
-
-.detail {
-  color: white;
-  width: $app-width;
-  height: $app-height;
-  transform-origin: top left;
-  display: flex;
-  flex-direction: column;
-
-  > img {
-    height: auto;
-    width: 100%;
-    height: auto;
-    flex: 0 1 auto;
-    z-index: 1;
-  }
-
-  > .content {
-    background: #232323;
-    flex: 1 0 auto;
-    padding: 2rem 1.5rem;
-    animation: slide-down 0.6s ease-in-out;
-
-    @keyframes slide-down {
-      from {
-        transform: translateY(-100%);
-      }
-      to {
-        transform: translateY(0);
-      }
-    }
-
-    > * {
-      margin-bottom: 1rem;
-    }
-
-    > .title {
-      font-size: 2rem;
-      text-transform: uppercase;
-    }
-
-    > .creator {
-      opacity: 0.6;
-      margin-top: -0.5rem;
-    }
-
-    > .description {
-      line-height: 1.5;
-    }
-  }
-}
-
-body {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  background: #1d1f20;
-}
-
-html,
-body {
-  font-size: 14px;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
+  cursor: pointer;
   position: relative;
+  transform-origin: 0 0;
+
+  > img {
+    height: auto;
+    width: 100%;
+    position: relative;
+  }
 }
 </style>

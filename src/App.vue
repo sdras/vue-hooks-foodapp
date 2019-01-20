@@ -15,8 +15,18 @@ export default {
 </script>
 
 <style lang="scss">
-$app-width: 50vmin;
-$app-height: 90vmin;
+$app-width: 700px;
+$app-height: 100vh;
+
+body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 100vw;
+  background: #1d1f20;
+}
 
 #app {
   height: $app-height;
