@@ -16,7 +16,7 @@
 
 <script>
 import AppDetails from "./AppDetails.vue";
-import { TimelineMax, Power2 } from "gsap";
+import { TimelineMax, Sine } from "gsap";
 
 export default {
   components: {
@@ -61,100 +61,50 @@ export default {
   methods: {
     expand(item, event) {
       const itemEl = event.target;
+      const elImg = this.$refs[item][0];
 
       this.rects.first = itemEl.getBoundingClientRect();
       this.rects.last = this.$refs.gallery.getBoundingClientRect();
 
-      let elImg = this.$refs[item][0];
-
       if (!this.isShowing) {
-        console.log("in");
-        const itemEl = event.target;
         this.isShowing = true;
 
         let deltaW = this.rects.first.left - this.rects.last.left;
         let deltaH = this.rects.first.top - this.rects.last.top;
         let deltaS = this.rects.last.width / this.rects.first.width;
 
-        TweenMax.to(elImg, 0.5, {
+        TweenMax.to(elImg, 0.3, {
           x: -deltaW,
           y: -deltaH,
           scale: deltaS,
           transformOrigin: "0 0",
           zIndex: 1000,
-          ease: Power2.easeOut
+          ease: Sine.easeOut
         });
       } else {
-        TweenMax.to(elImg, 0.5, {
-          x: this.rects.first.left,
-          y: this.rects.first.top,
+        TweenMax.to(elImg, 0.3, {
+          x: 0,
+          y: 0,
           scale: 1,
           transformOrigin: "0 0",
           zIndex: 1,
-          ease: Power2.easeIn
+          ease: Sine.easeIn
         });
 
         this.isShowing = false;
       }
-    },
-    fullThing() {
-      const items = document.querySelectorAll(".item");
-      const detailItem = document.querySelector(".detail");
-      const detailScene = document.querySelector(".scene.-detail");
-
-      detailScene.style.display = "none";
-
-      detailItem.addEventListener("click", () => {
-        const itemImage = document.querySelector(
-          `[data-key="${detailItem.getAttribute("data-image")}"]`
-        );
-
-        let itemImageRect = itemImage.getBoundingClientRect();
-        let detailItemRect = detailItem.getBoundingClientRect();
-
-        detailScene.style.display = "none";
-        itemImage.style.opacity = 1;
-
-        itemImage.animate(
-          [
-            {
-              zIndex: 2,
-              transform: `
-                translateX(${detailItemRect.left - itemImageRect.left}px)
-                translateY(${detailItemRect.top - itemImageRect.top}px)
-                scale(${detailItemRect.width / itemImageRect.width})
-                `
-            },
-            {
-              zIndex: 2,
-              transform: `
-                translateX(0)
-                translateY(0)
-                scale(1)
-              `
-            }
-          ],
-          {
-            duration: 600,
-            easing: "cubic-bezier(0.2, 0, 0.2, 1)"
-          }
-        );
-      });
     }
-  },
-  mounted() {
-    //this.fullThing();
   }
 };
 </script>
 
 <style lang="scss">
-$app-width: 700px;
+$app-width: 600px;
 $app-height: 100vh;
 
 .scene {
   display: flex;
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   width: $app-width;
@@ -189,6 +139,7 @@ $app-height: 100vh;
     height: auto;
     width: 100%;
     position: relative;
+    backface-visibility: hidden;
   }
 }
 </style>
