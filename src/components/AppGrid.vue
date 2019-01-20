@@ -1,14 +1,15 @@
 <template>
   <div class="scene -gallery" ref="gallery">
     <div
-      @click="expand(item, $event)"
+      @click="expand(item.name, $event)"
       v-for="item in food"
       class="item"
-      :key="item"
-      :data-key="item"
+      :key="item.name"
+      :data-key="item.name"
       ref="itemimg"
     >
-      <img :src="`${item}.jpg`" :alt="item" :ref="item">
+      <img :src="`${item.name}.jpg`" :alt="item.name" :ref="item.name">
+      <h3>{{ item.name }}</h3>
     </div>
     <app-details v-if="isShowing"></app-details>
   </div>
@@ -25,37 +26,16 @@ export default {
   data() {
     return {
       isShowing: false,
-      food: [
-        "appetizer",
-        "avocado",
-        "berries",
-        "bowl",
-        "breakfast",
-        "burger2",
-        "corn",
-        "dumpling",
-        "egg2",
-        "fig",
-        "fries",
-        "oyster",
-        "pancake",
-        "pasta",
-        "pasta2",
-        "pizza",
-        "plates",
-        "popcicle",
-        "salmon",
-        "soup",
-        "steak",
-        "steamed",
-        "toast",
-        "tomato"
-      ],
       rects: {
         first: null,
         last: null
       }
     };
+  },
+  computed: {
+    food() {
+      return this.$store.state.food;
+    }
   },
   methods: {
     expand(item, event) {
