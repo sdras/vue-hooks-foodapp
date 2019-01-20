@@ -18,9 +18,6 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
-$app-width: 600px;
-$app-height: 100vh;
-
 .detail {
   color: white;
   width: $app-width;

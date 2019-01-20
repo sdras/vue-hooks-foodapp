@@ -34,7 +34,6 @@ export default {
         "burger2",
         "corn",
         "dumpling",
-        "egg",
         "egg2",
         "fig",
         "fries",
@@ -99,9 +98,6 @@ export default {
 </script>
 
 <style lang="scss">
-$app-width: 600px;
-$app-height: 100vh;
-
 .scene {
   display: flex;
   position: relative;
@@ -115,7 +111,7 @@ $app-height: 100vh;
   &.-gallery {
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: flex-start;
 
     > .item {
