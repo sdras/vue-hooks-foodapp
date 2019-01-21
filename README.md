@@ -1,6 +1,6 @@
 # Vue Hooks FoodApp
 
-A sample app to demo how hooks can work in Vue. Using [vue-hooks](https://github.com/yyx990803/vue-hooks) (still very experimental). I did a writeup of the functionality on CSS-Trick in this article, and why they're useful in Vue. 
+A sample app to demo how hooks can work in Vue. Using [vue-hooks](https://github.com/yyx990803/vue-hooks) (still very experimental). I did a [writeup of the functionality on CSS-Tricks in this article](https://css-tricks.com/what-hooks-mean-for-vue/ ), and why they're useful in Vue. 
 
 ![Vue hooks demo](https://media.giphy.com/media/7FfLF0PlWuPVfPPFll/giphy.gif "Vue Hooks Demo")
 
