@@ -48,4 +48,10 @@ nav {
     transition: 0.3s all ease;
   }
 }
+
+@media only screen and (max-width: 767px) {
+  .title {
+    display: none !important;
+  }
+}
 </style>

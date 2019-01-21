@@ -1,5 +1,5 @@
 <template>
-  <aside>
+  <aside class="about">
     <h2>About Your Area</h2>
     <img src="bridge.jpg" alt="bridge">
     <p>We'll throw some happy little limbs on this tree. Everything is happy if you choose to make it that way. Use what you see, don't plan it. I'm going to mix up a little color. We’ll use Van Dyke Brown, Permanent Red, and a little bit of Prussian Blue.</p>

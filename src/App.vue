@@ -80,4 +80,28 @@ h2 {
     color: $app-highlight;
   }
 }
+
+@media only screen and (max-width: 1200px) and (min-width: 768px) {
+  main {
+    grid-template-columns: 1fr 1fr !important;
+    width: 95vw;
+    overflow: visible;
+  }
+
+  .about {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  main {
+    display: block !important;
+  }
+
+  #app {
+    height: auto !important;
+    width: 90% !important;
+    margin: 40px 5% !important;
+  }
+}
 </style>
