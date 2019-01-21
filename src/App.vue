@@ -63,6 +63,7 @@ h1 {
 h2 {
   margin: 0;
   font-size: 30px;
+  opacity: 0.9;
 }
 
 .tags {

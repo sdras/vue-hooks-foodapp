@@ -15,6 +15,7 @@
 <script>
 import { preventscroll } from "./../hooks/preventscroll.js";
 import { enablescroll } from "./../hooks/enablescroll.js";
+
 import { TimelineMax, TweenMax, Sine, Elastic } from "gsap";
 import Splitting from "splitting";
 import "splitting/dist/splitting.css";
@@ -36,18 +37,6 @@ export default {
     enablescroll();
   },
   methods: {
-    fadeIn() {
-      TweenMax.fromTo(
-        this.$refs.details,
-        0.3,
-        {
-          opacity: 0
-        },
-        {
-          opacity: 1
-        }
-      );
-    },
     lettering() {
       const title = this.$refs.title;
       const desc = this.$refs.desc;
@@ -86,6 +75,19 @@ export default {
         },
         0.008,
         "start+=0.6"
+      );
+    },
+    fadeIn() {
+      TweenMax.fromTo(
+        ".-detail",
+        0.3,
+        {
+          opacity: 0
+        },
+        {
+          opacity: 1,
+          ease: Sine.easeOut
+        }
       );
     }
   },
