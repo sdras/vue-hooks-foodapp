@@ -53,5 +53,13 @@ nav {
   .title {
     display: none !important;
   }
+
+  nav {
+    padding: 0 10px !important;
+  }
+
+  .login {
+    right: 10px !important;
+  }
 }
 </style>
