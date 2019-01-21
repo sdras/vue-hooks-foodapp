@@ -2,14 +2,15 @@ import { useMounted } from "vue-hooks";
 
 export function preventscroll() {
   useMounted(() => {
-    const keys = { 37: 1, 38: 1, 39: 1, 40: 1 };
-
     const preventDefault = (e) => {
       e = e || window.event;
       if (e.preventDefault)
         e.preventDefault();
       e.returnValue = false;
     }
+
+    // keycodes for left, up, right, down
+    const keys = { 37: 1, 38: 1, 39: 1, 40: 1 };
 
     const preventDefaultForScrollKeys = (e) => {
       if (keys[e.keyCode]) {

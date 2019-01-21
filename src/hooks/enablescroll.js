@@ -12,6 +12,12 @@ export function enablescroll() {
     (() => {
       if (window.removeEventListener)
         window.removeEventListener('DOMMouseScroll', preventDefault, false);
+
+      //firefox
+      window.addEventListener('DOMMouseScroll', (e) => {
+        e.stopPropagation();
+      }, true);
+
       window.onmousewheel = document.onmousewheel = null;
       window.onwheel = null;
       window.ontouchmove = null;

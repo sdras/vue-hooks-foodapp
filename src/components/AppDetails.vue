@@ -146,4 +146,13 @@ export default {
     }
   }
 }
+
+//no
+@media only screen and (max-width: 767px) {
+  .scene {
+    left: 0 !important;
+    width: 90vw !important;
+    height: 100vh !important;
+  }
+}
 </style>
