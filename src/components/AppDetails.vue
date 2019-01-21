@@ -95,8 +95,11 @@ export default {
   computed: {
     topAmt() {
       if (window.matchMedia("(min-width: 768px)").matches) {
+        //tablet + above
         return this.topImg + 500;
       } else {
+        //mobile
+        //compensate for the top nav and adjusting the image
         const topMargin = this.rects.last.top > 0 ? 0 : 110;
         return window.pageYOffset - topMargin + this.rects.last.width;
       }
@@ -113,6 +116,7 @@ export default {
 .scene.-detail {
   position: absolute;
   max-height: 1000px;
+  overflow-y: auto !important;
 }
 
 .detail {
@@ -159,7 +163,12 @@ export default {
   }
 }
 
-//no
+@media only screen and (min-width: 768px) {
+  .scene {
+    overflow-y: scroll;
+  }
+}
+
 @media only screen and (max-width: 767px) {
   .scene {
     left: 0 !important;

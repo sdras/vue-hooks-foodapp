@@ -100,7 +100,6 @@ export default {
   width: $app-width;
   height: $app-height;
   max-height: 100%;
-  overflow-y: scroll;
 
   &.-gallery {
     position: relative;
@@ -108,6 +107,7 @@ export default {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
+    //overflow-y: scroll;
 
     > .item {
       flex-basis: 30%;
