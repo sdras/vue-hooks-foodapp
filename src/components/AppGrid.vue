@@ -1,6 +1,6 @@
 <template>
   <div class="scene -gallery" ref="gallery" id="app">
-    <h1>Restaurants In Your Area</h1>
+    <h1 ref="heading">Restaurants In Your Area</h1>
     <div
       @click="expand(item, $event)"
       v-for="item in food"
@@ -32,6 +32,7 @@ export default {
         first: null,
         last: null
       },
+      imgOffset: 0,
       topImg: 0
     };
   },
@@ -43,9 +44,8 @@ export default {
       if (window.matchMedia("(min-width: 768px)").matches) {
         return -(this.rects.first.top - this.rects.last.top);
       } else {
-        //find the top of the image
-        //find the distance from the top
-        return window.pageYOffset - this.rects.first.top;
+        const topMargin = this.rects.last.top > 0 ? this.rects.last.top : 0;
+        return -(this.rects.first.top - topMargin);
       }
     }
   },
@@ -56,8 +56,6 @@ export default {
 
       this.rects.first = itemEl.getBoundingClientRect();
       this.rects.last = this.$refs.gallery.getBoundingClientRect();
-      console.log(this.rects.first);
-      console.log(`scroll position: ${window.pageYOffset}`);
 
       if (!this.isShowing) {
         this.isShowing = true;
@@ -65,7 +63,6 @@ export default {
         this.topImg = this.$refs.gallery.scrollTop;
 
         let deltaW = this.rects.first.left - this.rects.last.left;
-        //let deltaH = this.rects.first.top - this.rects.last.top;
         let deltaS = this.rects.last.width / this.rects.first.width;
 
         TweenMax.to(elImg, 0.3, {

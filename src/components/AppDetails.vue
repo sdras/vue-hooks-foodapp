@@ -97,7 +97,8 @@ export default {
       if (window.matchMedia("(min-width: 768px)").matches) {
         return this.topImg + 500;
       } else {
-        return window.pageYOffset + this.rects.last.width;
+        const topMargin = this.rects.last.top > 0 ? 0 : 110;
+        return window.pageYOffset - topMargin + this.rects.last.width;
       }
     }
   },
