@@ -107,7 +107,6 @@ export default {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
-    //overflow-y: scroll;
 
     > .item {
       flex-basis: 30%;

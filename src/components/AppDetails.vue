@@ -101,7 +101,7 @@ export default {
         //mobile
         //compensate for the top nav and adjusting the image
         const topMargin = this.rects.last.top > 0 ? 0 : 110;
-        return window.pageYOffset - topMargin + this.rects.last.width;
+        return window.pageYOffset - topMargin + this.rects.last.width - 280;
       }
     }
   },
@@ -117,6 +117,7 @@ export default {
   position: absolute;
   max-height: 1000px;
   overflow-y: auto !important;
+  z-index: 10000;
 }
 
 .detail {
@@ -128,7 +129,6 @@ export default {
   flex-direction: column;
 
   .content {
-    background: #1d1f20;
     flex: 1 0 auto;
     padding: 2rem 1.5rem;
 
@@ -167,6 +167,9 @@ export default {
   .scene {
     overflow-y: scroll;
   }
+  .content {
+    background: #1d1f20;
+  }
 }
 
 @media only screen and (max-width: 767px) {
@@ -174,6 +177,38 @@ export default {
     left: 0 !important;
     width: 90vw !important;
     height: 100vh !important;
+  }
+
+  .detail .content {
+    padding-top: 45px !important;
+  }
+
+  .content {
+    background: -moz-linear-gradient(
+      top,
+      rgba(29, 31, 32, 0) 0%,
+      rgba(29, 31, 32, 0) 1%,
+      rgba(29, 31, 32, 0.63) 6%,
+      rgba(29, 31, 32, 1) 12%,
+      rgba(29, 31, 32, 1) 100%
+    ); /* FF3.6-15 */
+    background: -webkit-linear-gradient(
+      top,
+      rgba(29, 31, 32, 0) 0%,
+      rgba(29, 31, 32, 0) 1%,
+      rgba(29, 31, 32, 0.63) 6%,
+      rgba(29, 31, 32, 1) 12%,
+      rgba(29, 31, 32, 1) 100%
+    ); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(
+      to bottom,
+      rgba(29, 31, 32, 0) 0%,
+      rgba(29, 31, 32, 0) 1%,
+      rgba(29, 31, 32, 0.63) 6%,
+      rgba(29, 31, 32, 1) 12%,
+      rgba(29, 31, 32, 1) 100%
+    ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001d1f20', endColorstr='#1d1f20',GradientType=0 ); /* IE6-9 */
   }
 }
 </style>

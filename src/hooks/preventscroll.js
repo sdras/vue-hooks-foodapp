@@ -24,7 +24,8 @@ export function preventscroll() {
         window.addEventListener('DOMMouseScroll', preventDefault, false);
       window.onwheel = preventDefault; // modern standard
       window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
-      window.ontouchmove = preventDefault; // mobile
+      window.touchmove = preventDefault; // mobile
+      window.touchstart = preventDefault; // mobile
       document.onkeydown = preventDefaultForScrollKeys;
     })()
   });
@@ -41,7 +42,8 @@ export function preventscroll() {
 
       window.onmousewheel = document.onmousewheel = null;
       window.onwheel = null;
-      window.ontouchmove = null;
+      window.touchmove = null;
+      window.touchstart = null;
       document.onkeydown = null;
     })()
   });
