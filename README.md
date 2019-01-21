@@ -8,5 +8,5 @@ If you'd like to see them in action, check out `src/hooks` and `src/AppGrid.vue`
 
 Created by [Vue CLI](https://cli.vuejs.org/)
 
-To run: `yarn run serve`
-To build: `yarn run build`
+* To run: `yarn run serve`
+* To build: `yarn run build`

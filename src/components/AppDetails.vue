@@ -14,8 +14,6 @@
 
 <script>
 import { preventscroll } from "./../hooks/preventscroll.js";
-import { enablescroll } from "./../hooks/enablescroll.js";
-
 import { TimelineMax, TweenMax, Sine, Elastic } from "gsap";
 import Splitting from "splitting";
 import "splitting/dist/splitting.css";
@@ -38,7 +36,6 @@ export default {
   },
   hooks() {
     preventscroll();
-    enablescroll();
   },
   methods: {
     lettering() {
