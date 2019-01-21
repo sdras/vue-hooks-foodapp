@@ -21,7 +21,7 @@ nav {
   height: 80px;
   background: #0f1010;
   margin-bottom: 30px;
-  padding: 0 30px;
+  padding: 0 8vmin 0 50px;
   display: flex;
   position: relative;
 }
@@ -35,7 +35,7 @@ nav {
 
 .login {
   position: absolute;
-  right: 30px;
+  right: 5.5vmin;
   margin: 20px 20px;
   border: 1px solid currentColor;
   padding: 8px 30px;

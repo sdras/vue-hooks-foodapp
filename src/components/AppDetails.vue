@@ -1,8 +1,8 @@
 <template>
-  <div class="scene -detail" ref="details" :style="{ top: (topImg + 500) + 'px' }">
+  <div class="scene -detail" ref="details" :style="{ top: topAmt + 'px' }">
     <div class="detail">
       <div class="content">
-        <h2 class="title" ref="title">{{ currentItem.restaurant }}</h2>
+        <h2 class="title" ref="title">{{ currentItem.restaurant }} {{ topAmt }}</h2>
         <div class="tags">
           <span v-for="tag in currentItem.tags" :key="tag">{{ tag }}</span>
         </div>
@@ -24,6 +24,10 @@ import "splitting/dist/splitting-cells.css";
 export default {
   props: {
     currentItem: {
+      type: Object,
+      required: true
+    },
+    rects: {
       type: Object,
       required: true
     },
@@ -91,6 +95,15 @@ export default {
       );
     }
   },
+  computed: {
+    topAmt() {
+      if (window.matchMedia("(min-width: 768px)").matches) {
+        return this.topImg + 500;
+      } else {
+        return window.pageYOffset + this.rects.last.width;
+      }
+    }
+  },
   mounted() {
     this.fadeIn();
     this.lettering();
@@ -101,6 +114,7 @@ export default {
 <style lang="scss">
 .scene.-detail {
   position: absolute;
+  max-height: 1000px;
 }
 
 .detail {

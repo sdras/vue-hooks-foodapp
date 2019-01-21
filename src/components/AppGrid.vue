@@ -12,7 +12,7 @@
       <img :src="`${item.name}.jpg`" :alt="item.name" :ref="item.name">
       <h4>{{ item.restaurant }}</h4>
     </div>
-    <app-details v-if="isShowing" :currentItem="currentItem" :topImg="topImg"></app-details>
+    <app-details v-if="isShowing" :currentItem="currentItem" :topImg="topImg" :rects="rects"></app-details>
   </div>
 </template>
 
@@ -38,6 +38,15 @@ export default {
   computed: {
     food() {
       return this.$store.state.food;
+    },
+    imgTopDelta() {
+      if (window.matchMedia("(min-width: 768px)").matches) {
+        return -(this.rects.first.top - this.rects.last.top);
+      } else {
+        //find the top of the image
+        //find the distance from the top
+        return window.pageYOffset - this.rects.first.top;
+      }
     }
   },
   methods: {
@@ -47,6 +56,8 @@ export default {
 
       this.rects.first = itemEl.getBoundingClientRect();
       this.rects.last = this.$refs.gallery.getBoundingClientRect();
+      console.log(this.rects.first);
+      console.log(`scroll position: ${window.pageYOffset}`);
 
       if (!this.isShowing) {
         this.isShowing = true;
@@ -54,12 +65,12 @@ export default {
         this.topImg = this.$refs.gallery.scrollTop;
 
         let deltaW = this.rects.first.left - this.rects.last.left;
-        let deltaH = this.rects.first.top - this.rects.last.top;
+        //let deltaH = this.rects.first.top - this.rects.last.top;
         let deltaS = this.rects.last.width / this.rects.first.width;
 
         TweenMax.to(elImg, 0.3, {
           x: -deltaW,
-          y: -deltaH,
+          y: this.imgTopDelta,
           scale: deltaS,
           transformOrigin: "0 0",
           zIndex: 1000,

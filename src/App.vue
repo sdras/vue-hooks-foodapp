@@ -103,7 +103,7 @@ h2 {
     order: -1;
     height: auto !important;
     width: 90% !important;
-    margin: 40px 5% !important;
+    margin: 0 5% !important;
   }
 }
 </style>
