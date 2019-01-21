@@ -51,7 +51,6 @@ export default {
       if (!this.isShowing) {
         this.isShowing = true;
         this.currentItem = item;
-        console.log(this.rects.last);
         this.topImg = this.$refs.gallery.scrollTop;
 
         let deltaW = this.rects.first.left - this.rects.last.left;
@@ -128,6 +127,7 @@ export default {
 
 h4 {
   margin: 8px 0 30px;
+  font-weight: normal;
 }
 
 h1 {

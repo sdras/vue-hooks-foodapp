@@ -1,5 +1,5 @@
 <template>
-  <div class="scene -detail" :style="{ top: (topImg + 500) + 'px' }">
+  <div class="scene -detail" ref="details" :style="{ top: (topImg + 500) + 'px' }">
     <div class="detail">
       <div class="content">
         <h2 class="title" ref="title">{{ currentItem.restaurant }}</h2>
@@ -38,7 +38,7 @@ export default {
   methods: {
     fadeIn() {
       TweenMax.fromTo(
-        ".-detail",
+        this.$refs.details,
         0.3,
         {
           opacity: 0
