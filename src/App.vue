@@ -29,7 +29,7 @@ export default {
 body {
   width: 100vw;
   margin: 0;
-  background: #1d1f20;
+  background: $app-background;
   color: #d1d7da;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

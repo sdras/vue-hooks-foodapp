@@ -12,21 +12,30 @@
       <img :src="`${item.name}.jpg`" :alt="item.name" :ref="item.name">
       <h4>{{ item.restaurant }}</h4>
     </div>
-    <app-details v-if="isShowing" :currentItem="currentItem" :topImg="topImg" :rects="rects"></app-details>
+    <app-details
+      v-if="isShowing && !isMobile"
+      :currentItem="currentItem"
+      :topImg="topImg"
+      :rects="rects"
+    ></app-details>
+    <app-mobiledetails v-if="isShowing && isMobile" :currentItem="currentItem"></app-mobiledetails>
   </div>
 </template>
 
 <script>
 import AppDetails from "./AppDetails.vue";
+import AppMobiledetails from "./AppMobiledetails.vue";
 import { TimelineMax, Sine } from "gsap";
 
 export default {
   components: {
-    AppDetails
+    AppDetails,
+    AppMobiledetails
   },
   data() {
     return {
       isShowing: false,
+      isMobile: false,
       currentItem: null,
       rects: {
         first: null,
@@ -47,6 +56,13 @@ export default {
         const topMargin = this.rects.last.top > 0 ? this.rects.last.top : 0;
         return -(this.rects.first.top - topMargin);
       }
+    }
+  },
+  watch: {
+    isShowing() {
+      window.matchMedia("(min-width: 768px)").matches
+        ? (this.isMobile = false)
+        : (this.isMobile = true);
     }
   },
   methods: {
