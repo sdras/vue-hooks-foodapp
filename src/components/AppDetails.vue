@@ -171,44 +171,4 @@ export default {
     background: #1d1f20;
   }
 }
-
-@media only screen and (max-width: 767px) {
-  .scene {
-    left: 0 !important;
-    width: 90vw !important;
-    height: 100vh !important;
-  }
-
-  .detail .content {
-    padding-top: 45px !important;
-  }
-
-  .content {
-    background: -moz-linear-gradient(
-      top,
-      rgba(29, 31, 32, 0) 0%,
-      rgba(29, 31, 32, 0) 1%,
-      rgba(29, 31, 32, 0.63) 6%,
-      rgba(29, 31, 32, 1) 12%,
-      rgba(29, 31, 32, 1) 100%
-    ); /* FF3.6-15 */
-    background: -webkit-linear-gradient(
-      top,
-      rgba(29, 31, 32, 0) 0%,
-      rgba(29, 31, 32, 0) 1%,
-      rgba(29, 31, 32, 0.63) 6%,
-      rgba(29, 31, 32, 1) 12%,
-      rgba(29, 31, 32, 1) 100%
-    ); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(
-      to bottom,
-      rgba(29, 31, 32, 0) 0%,
-      rgba(29, 31, 32, 0) 1%,
-      rgba(29, 31, 32, 0.63) 6%,
-      rgba(29, 31, 32, 1) 12%,
-      rgba(29, 31, 32, 1) 100%
-    ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#001d1f20', endColorstr='#1d1f20',GradientType=0 ); /* IE6-9 */
-  }
-}
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div
     class="mobiledetails"
-    :style="`background: url('${currentItem.name}.jpg') no-repeat left top`"
+    :style="`background: url('${currentItem.name}.jpg') no-repeat left top; background-size: contain`"
   >
     <div class="mobilecontent">
       <h2 class="title" ref="title">{{ currentItem.restaurant }}</h2>
@@ -9,7 +9,7 @@
         <span v-for="tag in currentItem.tags" :key="tag">{{ tag }}</span>
       </div>
       <p class="description" ref="desc">{{ currentItem.desc }}</p>
-      <button>Back to Results</button>
+      <button @click="closeModal">Back to Results</button>
     </div>
   </div>
 </template>
@@ -20,6 +20,11 @@ export default {
     currentItem: {
       type: Object,
       required: true
+    }
+  },
+  methods: {
+    closeModal() {
+      this.$emit("closeModal", false);
     }
   }
 };
@@ -33,12 +38,12 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  height: calc(100% - 100px);
+  height: calc(100% - 120px);
   width: calc(100vw - 80px);
-  padding: 100px 40px 0;
+  padding: 120px 40px 0;
   overflow: hidden;
   background: $app-background;
-  background-size: contain;
+  background-size: 500px;
   &:before {
     content: "";
     position: fixed;
@@ -97,5 +102,6 @@ button {
   text-transform: uppercase;
   letter-spacing: 0.15em;
   background: $app-highlight;
+  cursor: pointer;
 }
 </style>

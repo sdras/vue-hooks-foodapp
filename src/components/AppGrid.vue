@@ -18,7 +18,12 @@
       :topImg="topImg"
       :rects="rects"
     ></app-details>
-    <app-mobiledetails v-if="isShowing && isMobile" :currentItem="currentItem"></app-mobiledetails>
+    <app-mobiledetails
+      @closeModal="isShowing = $event"
+      v-if="isShowing && isMobile"
+      :currentItem="currentItem"
+      :isShowing="isShowing"
+    ></app-mobiledetails>
   </div>
 </template>
 
@@ -48,14 +53,6 @@ export default {
   computed: {
     food() {
       return this.$store.state.food;
-    },
-    imgTopDelta() {
-      if (window.matchMedia("(min-width: 768px)").matches) {
-        return -(this.rects.first.top - this.rects.last.top);
-      } else {
-        const topMargin = this.rects.last.top > 0 ? this.rects.last.top : 0;
-        return -(this.rects.first.top - topMargin);
-      }
     }
   },
   watch: {
@@ -67,40 +64,46 @@ export default {
   },
   methods: {
     expand(item, event) {
-      const itemEl = event.target;
-      const elImg = this.$refs[item.name][0];
+      if (window.matchMedia("(min-width: 768px)").matches) {
+        const itemEl = event.target;
+        const elImg = this.$refs[item.name][0];
 
-      this.rects.first = itemEl.getBoundingClientRect();
-      this.rects.last = this.$refs.gallery.getBoundingClientRect();
+        this.rects.first = itemEl.getBoundingClientRect();
+        this.rects.last = this.$refs.gallery.getBoundingClientRect();
 
-      if (!this.isShowing) {
+        if (!this.isShowing) {
+          this.isShowing = true;
+          this.currentItem = item;
+          this.topImg = this.$refs.gallery.scrollTop;
+
+          let deltaW = this.rects.first.left - this.rects.last.left;
+          let deltaH = this.rects.first.top - this.rects.last.top;
+          let deltaS = (this.rects.last.width - 30) / this.rects.first.width;
+
+          TweenMax.to(elImg, 0.3, {
+            x: -deltaW,
+            y: -deltaH,
+            scale: deltaS,
+            transformOrigin: "0 0",
+            zIndex: 1000,
+            ease: Sine.easeOut
+          });
+        } else {
+          TweenMax.to(elImg, 0.3, {
+            x: 0,
+            y: 0,
+            scale: 1,
+            transformOrigin: "0 0",
+            zIndex: 0,
+            ease: Sine.easeIn
+          });
+
+          this.isShowing = false;
+          this.currentItem = null;
+        }
+      } else {
         this.isShowing = true;
         this.currentItem = item;
-        this.topImg = this.$refs.gallery.scrollTop;
-
-        let deltaW = this.rects.first.left - this.rects.last.left;
-        let deltaS = (this.rects.last.width - 30) / this.rects.first.width;
-
-        TweenMax.to(elImg, 0.3, {
-          x: -deltaW,
-          y: this.imgTopDelta,
-          scale: deltaS,
-          transformOrigin: "0 0",
-          zIndex: 1000,
-          ease: Sine.easeOut
-        });
-      } else {
-        TweenMax.to(elImg, 0.3, {
-          x: 0,
-          y: 0,
-          scale: 1,
-          transformOrigin: "0 0",
-          zIndex: 0,
-          ease: Sine.easeIn
-        });
-
-        this.isShowing = false;
-        this.currentItem = null;
       }
     }
   }
