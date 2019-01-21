@@ -63,7 +63,7 @@ export default {
         this.topImg = this.$refs.gallery.scrollTop;
 
         let deltaW = this.rects.first.left - this.rects.last.left;
-        let deltaS = this.rects.last.width / this.rects.first.width;
+        let deltaS = (this.rects.last.width - 30) / this.rects.first.width;
 
         TweenMax.to(elImg, 0.3, {
           x: -deltaW,
