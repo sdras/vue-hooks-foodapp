@@ -2,7 +2,7 @@
   <div class="scene -detail" ref="details" :style="{ top: topAmt + 'px' }">
     <div class="detail">
       <div class="content">
-        <h2 class="title" ref="title">{{ currentItem.restaurant }} {{ topAmt }}</h2>
+        <h2 class="title" ref="title">{{ currentItem.restaurant }}</h2>
         <div class="tags">
           <span v-for="tag in currentItem.tags" :key="tag">{{ tag }}</span>
         </div>
