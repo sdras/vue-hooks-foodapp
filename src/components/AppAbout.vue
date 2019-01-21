@@ -24,6 +24,6 @@ img {
 }
 
 aside {
-  padding: 35px 8vmin 0 7vmin;
+  padding: 30px 8vmin 0 7vmin;
 }
 </style>

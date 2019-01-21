@@ -36,7 +36,7 @@ h4 {
 }
 
 aside {
-  padding: 35px 12vmin 0 6vmin;
+  padding: 30px 12vmin 0 6vmin;
 }
 
 img {
