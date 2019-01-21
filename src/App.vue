@@ -95,10 +95,12 @@ h2 {
 
 @media only screen and (max-width: 767px) {
   main {
-    display: block !important;
+    display: flex !important;
+    flex-flow: row wrap;
   }
 
   #app {
+    order: -1;
     height: auto !important;
     width: 90% !important;
     margin: 40px 5% !important;
