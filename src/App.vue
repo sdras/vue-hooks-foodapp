@@ -81,6 +81,13 @@ h2 {
   }
 }
 
+@media only screen and (min-width: 768px) {
+  #app {
+    padding-right: 30px;
+  }
+}
+
+// tabletish
 @media only screen and (max-width: 1200px) and (min-width: 768px) {
   main {
     grid-template-columns: 1fr 1fr !important;
@@ -93,6 +100,7 @@ h2 {
   }
 }
 
+// mobile
 @media only screen and (max-width: 767px) {
   main {
     display: flex !important;
