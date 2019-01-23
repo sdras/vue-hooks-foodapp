@@ -8,43 +8,39 @@ export function preventscroll() {
     e.returnValue = false;
   }
 
-  useMounted(() => {
-    // keycodes for left, up, right, down
-    const keys = { 37: 1, 38: 1, 39: 1, 40: 1 };
+  // keycodes for left, up, right, down
+  const keys = { 37: 1, 38: 1, 39: 1, 40: 1 };
 
-    const preventDefaultForScrollKeys = (e) => {
-      if (keys[e.keyCode]) {
-        preventDefault(e);
-        return false;
-      }
+  const preventDefaultForScrollKeys = (e) => {
+    if (keys[e.keyCode]) {
+      preventDefault(e);
+      return false;
     }
+  }
 
-    (() => {
-      if (window.addEventListener) // older FF
-        window.addEventListener('DOMMouseScroll', preventDefault, false);
-      window.onwheel = preventDefault; // modern standard
-      window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
-      window.touchmove = preventDefault; // mobile
-      window.touchstart = preventDefault; // mobile
-      document.onkeydown = preventDefaultForScrollKeys;
-    })()
+  useMounted(() => {
+    if (window.addEventListener) // older FF
+      window.addEventListener('DOMMouseScroll', preventDefault, false);
+    window.onwheel = preventDefault; // modern standard
+    window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
+    window.touchmove = preventDefault; // mobile
+    window.touchstart = preventDefault; // mobile
+    document.onkeydown = preventDefaultForScrollKeys;
   });
 
   useDestroyed(() => {
-    (() => {
-      if (window.removeEventListener)
-        window.removeEventListener('DOMMouseScroll', preventDefault, false);
+    if (window.removeEventListener)
+      window.removeEventListener('DOMMouseScroll', preventDefault, false);
 
-      //firefox
-      window.addEventListener('DOMMouseScroll', (e) => {
-        e.stopPropagation();
-      }, true);
+    //firefox
+    window.addEventListener('DOMMouseScroll', (e) => {
+      e.stopPropagation();
+    }, true);
 
-      window.onmousewheel = document.onmousewheel = null;
-      window.onwheel = null;
-      window.touchmove = null;
-      window.touchstart = null;
-      document.onkeydown = null;
-    })()
+    window.onmousewheel = document.onmousewheel = null;
+    window.onwheel = null;
+    window.touchmove = null;
+    window.touchstart = null;
+    document.onkeydown = null;
   });
 } 
