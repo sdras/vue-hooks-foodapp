@@ -28,8 +28,8 @@
 </template>
 
 <script>
-import AppDetails from "./AppDetails.vue";
 import AppMobiledetails from "./AppMobiledetails.vue";
+import AppDetails from "./AppDetails.vue";
 import { TimelineMax, Sine } from "gsap";
 
 export default {
