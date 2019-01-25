@@ -4,21 +4,18 @@
     :style="`background: url('${currentItem.name}.jpg') no-repeat left top; background-size: contain`"
   >
     <div class="mobilecontent">
-      <h2 class="title" ref="name">{{ currentItem.restaurant }}</h2>
+      <h2 class="title" ref="title">{{ currentItem.restaurant }}</h2>
       <div class="tags">
         <span v-for="tag in currentItem.tags" :key="tag">{{ tag }}</span>
       </div>
-      <p class="description" ref="description">{{ currentItem.desc }}</p>
+      <p class="description" ref="desc">{{ currentItem.desc }}</p>
       <button @click="closeModal">Back to Results</button>
     </div>
   </div>
 </template>
 
 <script>
-import { TimelineMax, TweenMax, Sine, Elastic } from "gsap";
-import Splitting from "splitting";
-import "splitting/dist/splitting.css";
-import "splitting/dist/splitting-cells.css";
+import { lettering } from "./../hooks/lettering.js";
 
 export default {
   props: {
@@ -27,49 +24,12 @@ export default {
       required: true
     }
   },
+  hooks() {
+    lettering();
+  },
   methods: {
     closeModal() {
       this.$emit("closeModal", false);
-    },
-    lettering() {
-      const title = this.$refs.name;
-      const desc = this.$refs.description;
-
-      Splitting({ target: title, by: "chars" });
-      Splitting({ target: desc, by: "lines" });
-      const tl = new TimelineMax();
-
-      tl.add("start");
-      tl.staggerFromTo(
-        ".char",
-        3.5,
-        {
-          opacity: 0,
-          transformOrigin: "50% 50% -30px",
-          rotationY: 100
-        },
-        {
-          opacity: 1,
-          transformOrigin: "50% 50% 0",
-          rotationY: 0,
-          ease: Elastic.easeOut.config(1, 0.4)
-        },
-        0.02,
-        "start+=0.2"
-      );
-      tl.staggerFromTo(
-        desc.childNodes,
-        1.5,
-        {
-          opacity: 0
-        },
-        {
-          opacity: 1,
-          ease: Sine.easeOut
-        },
-        0.008,
-        "start+=0.5"
-      );
     },
     fadeIn() {
       TweenMax.fromTo(
@@ -87,7 +47,6 @@ export default {
     }
   },
   mounted() {
-    this.lettering();
     this.fadeIn();
   }
 };

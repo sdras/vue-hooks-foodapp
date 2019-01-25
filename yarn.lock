@@ -7609,10 +7609,10 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
-vue-hooks@^0.3.1:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/vue-hooks/-/vue-hooks-0.3.1.tgz#c4c9b90ce1040c0ce940131bde8805187345f657"
-  integrity sha512-rXTiJFeF65SKx22hOWANNJ9W0N1lzu8hvXl0ugRs3q4T3MOfgKBxkf09CDTMddCRH5rX9m/SzZw0fvMDUnJgWg==
+vue-hooks@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/vue-hooks/-/vue-hooks-0.3.2.tgz#60feb7401811758fdf0aa63dc8da1771dc8ded5c"
+  integrity sha512-yLNLPdEjtSNbGCICajRRJ6JcYNbQK3jvfr8PPpB4Tg0+9hBNaRk50+ZYNtlAy7xXBGLHbR8/h2Gjao5SZYZW4w==
 
 vue-hot-reload-api@^2.3.0:
   version "2.3.1"

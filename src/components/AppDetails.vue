@@ -14,10 +14,7 @@
 
 <script>
 import { preventscroll } from "./../hooks/preventscroll.js";
-import { TimelineMax, TweenMax, Sine, Elastic } from "gsap";
-import Splitting from "splitting";
-import "splitting/dist/splitting.css";
-import "splitting/dist/splitting-cells.css";
+import { lettering } from "./../hooks/lettering.js";
 
 export default {
   props: {
@@ -36,48 +33,9 @@ export default {
   },
   hooks() {
     preventscroll();
+    lettering();
   },
   methods: {
-    lettering() {
-      const title = this.$refs.title;
-      const desc = this.$refs.desc;
-
-      Splitting({ target: title, by: "chars" });
-      Splitting({ target: desc, by: "lines" });
-      const tl = new TimelineMax();
-
-      tl.add("start");
-      tl.staggerFromTo(
-        ".char",
-        3.5,
-        {
-          opacity: 0,
-          transformOrigin: "50% 50% -30px",
-          rotationY: 100
-        },
-        {
-          opacity: 1,
-          transformOrigin: "50% 50% 0",
-          rotationY: 0,
-          ease: Elastic.easeOut.config(1, 0.4)
-        },
-        0.02,
-        "start+=0.3"
-      );
-      tl.staggerFromTo(
-        desc.childNodes,
-        1.5,
-        {
-          opacity: 0
-        },
-        {
-          opacity: 1,
-          ease: Sine.easeOut
-        },
-        0.008,
-        "start+=0.6"
-      );
-    },
     fadeIn() {
       TweenMax.fromTo(
         ".-detail",
@@ -107,7 +65,6 @@ export default {
   },
   mounted() {
     this.fadeIn();
-    this.lettering();
   }
 };
 </script>
