@@ -1,17 +1,22 @@
 <template>
   <nav>
     <app-logo></app-logo>
-    <span class="title">Dinner's On Me</span>
+    <span class="title" ref="logoname">Dinner's On Me</span>
     <span class="login">Log In</span>
   </nav>
 </template>
 
 <script>
 import AppLogo from "./AppLogo.vue";
+import { logolettering } from "./../hooks/logolettering.js";
+import { windowwidth } from "./../hooks/windowwidth.js";
 
 export default {
   components: {
     AppLogo
+  },
+  hooks() {
+    logolettering(windowwidth());
   }
 };
 </script>
