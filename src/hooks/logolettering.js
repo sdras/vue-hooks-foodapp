@@ -12,7 +12,7 @@ export function logolettering(data) {
       Splitting({ target: logoname, by: "chars" });
 
       TweenMax.staggerFromTo(
-        ".char",
+        "nav .char",
         5,
         {
           opacity: 0,

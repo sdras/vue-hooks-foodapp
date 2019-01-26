@@ -15,7 +15,7 @@ export function lettering() {
 
     tl.add("start");
     tl.staggerFromTo(
-      ".char",
+      ".scene .char, .mobiledetails .char",
       3.5,
       {
         opacity: 0,
